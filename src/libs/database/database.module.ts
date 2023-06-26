@@ -16,7 +16,10 @@ import { join } from 'path';
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_DATABASE'),
-          entities: [join(__dirname, 'services', '**', '*.entity{.ts,.js}')],
+          entities: [
+            join(__dirname, '..', '..', 'services', '**', '*.entity{.ts,.js}'),
+          ],
+          synchronize: true,
         } as TypeOrmModuleAsyncOptions),
     }),
   ],
