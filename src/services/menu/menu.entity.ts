@@ -1,13 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Store } from '../store/store.entity';
-  
 
 @Entity()
 export class Menu {
@@ -18,7 +12,7 @@ export class Menu {
   @PrimaryGeneratedColumn({ type: 'int' })
   @IsNotEmpty()
   @IsNumber()
-  id: number;
+  id!: number;
 
   @ManyToOne(() => Store, (store) => store.menus)
   store: Store;
@@ -32,10 +26,6 @@ export class Menu {
   @IsNotEmpty()
   menuName: string;
 
-  @Column({ type: 'varchar', length: 100 })
-  @IsString()
-  menuImage: string;
-
   @ApiProperty({
     example: 9900,
     description: '메뉴 가격',
@@ -44,15 +34,6 @@ export class Menu {
   @IsNumber()
   @IsNotEmpty()
   price: number;
-
-  @ApiProperty({
-    example: 10,
-    description: '메뉴 선택 수량',
-  })
-  @Column({ type: 'int' })
-  @IsNumber()
-  @IsNotEmpty()
-  qty: number;
 
   constructor(partial: Partial<Menu>) {
     Object.assign(this, partial);

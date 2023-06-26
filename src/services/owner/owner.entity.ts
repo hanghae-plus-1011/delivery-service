@@ -1,11 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Store } from '../store/store.entity';
 
 @Entity()
@@ -17,16 +12,26 @@ export class Owner {
   @PrimaryGeneratedColumn({ type: 'int' })
   @IsNotEmpty()
   @IsNumber()
-  id: number;
+  id!: number;
+
+  // password
+  @ApiProperty({
+    example: '1234',
+    description: '비밀번호',
+  })
+  @Column({ type: 'varchar', length: 100 })
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 
   @ApiProperty({
     example: '김사장',
-    description: "사장님 이름",
+    description: '사장님 실명',
   })
   @Column({ type: 'varchar', length: 50 })
   @IsString()
   @IsNotEmpty()
-  ownerName: string;
+  ownerName: string; // 사장님 실명
 
   @ApiProperty({
     example: '123-45-67890',
