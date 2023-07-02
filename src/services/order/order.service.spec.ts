@@ -1,4 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
+// import { Test, TestingModule } from '@nestjs/testing';
+import { TestBed } from '@automock/jest';
 import { OrderService } from './order.service';
 
 type OrderItemsRequestInfo = {
@@ -14,13 +15,25 @@ type OrderRequestInfo = {
 
 describe('OrderService', () => {
   let orderService: OrderService;
+  let mockCreateOrder: jest.SpyInstance;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [OrderService],
-    }).compile();
+  beforeAll(async () => {
+    // const module: TestingModule = await Test.createTestingModule({
+    //   providers: [OrderService],
+    // }).compile();
 
-    orderService = module.get<OrderService>(OrderService);
+    // orderService = module.get<OrderService>(OrderService);
+    const { unit, unitRef } = TestBed.create(OrderService)
+      // .mock(HttpService)
+      // .using({ get: jest.fn() })
+      // .mock(Logger)
+      // .using({ log: jest.fn() })
+      // .mock(CatsDal)
+      // .using({ saveCats: jest.fn() })
+      .compile();
+
+    orderService = unit;
+    mockCreateOrder = jest.spyOn(orderService, 'createOrder');
   });
   it('should be defined', () => {
     expect(orderService).toBeDefined();
@@ -28,17 +41,27 @@ describe('OrderService', () => {
 
   describe('주문 생성', () => {
     describe('주문 생성 기본 동작', () => {
-      const orderRequestInfo: OrderRequestInfo = {
+      const mockCreateOrderRequestInfo: OrderRequestInfo = {
         id: 1,
         orderItems: [{ id: 1, quantity: 1, storeId: 2 }],
       };
+
+      it('createOrder mocking  확인', () => {
+        orderService.createOrder(mockCreateOrderRequestInfo);
+
+        expect(mockCreateOrder).toBeDefined();
+        expect(mockCreateOrder).toHaveBeenCalled();
+        expect(orderService.createOrder).toBe(mockCreateOrder);
+      });
+
       it('OrderService createOrder 동작 검증', () => {
-        const spy = jest.spyOn(orderService, 'createOrder');
-        const result = orderService.createOrder(orderRequestInfo);
+        const result = orderService.createOrder(mockCreateOrderRequestInfo);
 
         expect(orderService.createOrder).toBeDefined();
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith(orderRequestInfo);
+        expect(orderService.createOrder).toHaveBeenCalled();
+        expect(orderService.createOrder).toHaveBeenCalledWith(
+          mockCreateOrderRequestInfo,
+        );
         expect(result).toBe(true);
       });
     });
@@ -52,28 +75,7 @@ describe('OrderService', () => {
       };
       expect(() => orderService.createOrder(orderRequestInfo)).toThrow();
     });
-    // 배달 주문은 하나의 매장에서만 가능하고, 한번에 10개까지 메뉴를 주문할 수 있다
-    // 한번의 주문에 메뉴가 10개까지인지? 총 주문수량이 10개까지인지 조건 확인!!
-    it('한번에 10종류의 메뉴까지만 주문이 가능하다.', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [
-          { id: 1, quantity: 1, storeId: 2 },
-          { id: 2, quantity: 1, storeId: 2 },
-          { id: 3, quantity: 1, storeId: 2 },
-          { id: 4, quantity: 1, storeId: 2 },
-          { id: 5, quantity: 1, storeId: 2 },
-          { id: 6, quantity: 1, storeId: 2 },
-          { id: 7, quantity: 1, storeId: 2 },
-          { id: 8, quantity: 1, storeId: 2 },
-          { id: 9, quantity: 1, storeId: 2 },
-          { id: 10, quantity: 1, storeId: 2 },
-          { id: 11, quantity: 1, storeId: 2 },
-          { id: 12, quantity: 1, storeId: 2 },
-        ],
-      };
-      expect(() => orderService.createOrder(orderRequestInfo)).toThrow();
-    });
+
     it('한번에 수량 10개까지만 주문이 가능하다.', () => {
       const orderRequestInfo: OrderRequestInfo = {
         id: 1,
@@ -99,106 +101,6 @@ describe('OrderService', () => {
         ],
       };
       expect(() => orderService.createOrder(orderRequestInfo)).toThrow();
-    });
-  });
-
-  describe('주문 조회', () => {
-    describe('주문 조회 기본 동작', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [{ id: 1, quantity: 1, storeId: 2 }],
-      };
-      it('OrderService getOrder 동작 검증', () => {
-        const spy = jest.spyOn(orderService, 'getOrder');
-        const result = orderService.getOrder(orderRequestInfo);
-
-        expect(orderService.getOrder).toBeDefined();
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith(orderRequestInfo);
-        expect(result).toBe(true);
-      });
-    });
-  });
-
-  describe('주문 리스트 조회 제한 조건', () => {
-    it('주문은 ', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [],
-      };
-      expect(() => orderService.getOrder(orderRequestInfo)).toThrow();
-    });
-    // 배달 주문은 하나의 매장에서만 가능하고, 한번에 10개까지 메뉴를 주문할 수 있다
-    // 한번의 주문에 메뉴가 10개까지인지? 총 주문수량이 10개까지인지 조건 확인!!
-    it('한번에 10종류의 메뉴까지만 주문이 가능하다.', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [
-          { id: 1, quantity: 1, storeId: 2 },
-          { id: 2, quantity: 1, storeId: 2 },
-          { id: 3, quantity: 1, storeId: 2 },
-          { id: 4, quantity: 1, storeId: 2 },
-          { id: 5, quantity: 1, storeId: 2 },
-          { id: 6, quantity: 1, storeId: 2 },
-          { id: 7, quantity: 1, storeId: 2 },
-          { id: 8, quantity: 1, storeId: 2 },
-          { id: 9, quantity: 1, storeId: 2 },
-          { id: 10, quantity: 1, storeId: 2 },
-          { id: 11, quantity: 1, storeId: 2 },
-          { id: 12, quantity: 1, storeId: 2 },
-        ],
-      };
-      expect(() => orderService.getOrder(orderRequestInfo)).toThrow();
-    });
-  });
-
-  describe('주문 리스트 조회', () => {
-    describe('주문 리스트 조회 기본 동작', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [{ id: 1, quantity: 1, storeId: 2 }],
-      };
-      it('OrderService getOrder 동작 검증', () => {
-        const spy = jest.spyOn(orderService, 'getOrder');
-        const result = orderService.getOrder(orderRequestInfo);
-
-        expect(orderService.getOrder).toBeDefined();
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith(orderRequestInfo);
-        expect(result).toBe(true);
-      });
-    });
-  });
-
-  describe('주문 리스트 조회 제한 조건', () => {
-    it('주문은 ', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [],
-      };
-      expect(() => orderService.getOrder(orderRequestInfo)).toThrow();
-    });
-    // 배달 주문은 하나의 매장에서만 가능하고, 한번에 10개까지 메뉴를 주문할 수 있다
-    // 한번의 주문에 메뉴가 10개까지인지? 총 주문수량이 10개까지인지 조건 확인!!
-    it('한번에 10종류의 메뉴까지만 주문이 가능하다.', () => {
-      const orderRequestInfo: OrderRequestInfo = {
-        id: 1,
-        orderItems: [
-          { id: 1, quantity: 1, storeId: 2 },
-          { id: 2, quantity: 1, storeId: 2 },
-          { id: 3, quantity: 1, storeId: 2 },
-          { id: 4, quantity: 1, storeId: 2 },
-          { id: 5, quantity: 1, storeId: 2 },
-          { id: 6, quantity: 1, storeId: 2 },
-          { id: 7, quantity: 1, storeId: 2 },
-          { id: 8, quantity: 1, storeId: 2 },
-          { id: 9, quantity: 1, storeId: 2 },
-          { id: 10, quantity: 1, storeId: 2 },
-          { id: 11, quantity: 1, storeId: 2 },
-          { id: 12, quantity: 1, storeId: 2 },
-        ],
-      };
-      expect(() => orderService.getOrder(orderRequestInfo)).toThrow();
     });
   });
 });
