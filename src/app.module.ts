@@ -16,6 +16,7 @@ import { OrderModule } from './services/order/order.module';
 import { DeliveryModule } from './services/delivery/delivery.module';
 import { PaymentModule } from './services/payment/payment.module';
 import { DatabaseModule } from './libs/database/database.module';
+import { OrderItemModule } from './services/order-item/order-item.module';
 
 @Module({
   imports: [
@@ -40,8 +41,9 @@ import { DatabaseModule } from './libs/database/database.module';
     MenuModule,
     NotificationModule,
     OwnerModule,
+    OrderItemModule,
   ],
   controllers: [AppController],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
