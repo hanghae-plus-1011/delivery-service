@@ -3,6 +3,8 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Store } from '../store/store.entity';
 
+import { CreateMenuDto } from './menu.controller';
+
 @Entity()
 export class Menu {
   @ApiProperty({
@@ -35,7 +37,7 @@ export class Menu {
   @IsNotEmpty()
   price: number;
 
-  constructor(partial: Partial<Menu>) {
-    Object.assign(this, partial);
+  constructor(menu: CreateMenuDto) {
+    Object.assign(this, menu);
   }
 }
