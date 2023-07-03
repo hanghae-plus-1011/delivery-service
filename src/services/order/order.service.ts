@@ -1,16 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Order } from './order.entity';
 import { OrderRepository } from './order.repository';
 
 @Injectable()
 export class OrderService {
-  //   let orderRepository: OrderRepository
-  // constructor(
-  //   @InjectRepository(Order)
-  //   private orderRepository: Repository<Order>,
-  // ){ }
+  constructor(private orderRepository: OrderRepository) { }
+
   createOrder = (orderData) => {
     if (orderData.orderItems && orderData.orderItems.length === 0) {
       throw new Error(); // 예외 처리
@@ -24,7 +18,7 @@ export class OrderService {
     if (!this.areAllOrderItemStoreEqual(orderData.orderItems)) {
       throw new Error(); // 예외 처리
     }
-    return true;
+    return this.orderRepository.createOrder(orderData);
   };
 
   getOrders = (orderData) => {

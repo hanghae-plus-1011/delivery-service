@@ -50,9 +50,9 @@ export class Order {
   // @JoinColumn()
   // payment: Payment; // 결제 id
 
-  @OneToOne(() => Review)
-  @JoinColumn()
-  review: Review; // 리뷰 id
+  // @OneToOne(() => Review)
+  // @JoinColumn()
+  // review: Review; // 리뷰 id
 
   @ManyToOne(() => Store)
   store: Store; // 매장 id
