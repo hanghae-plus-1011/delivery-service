@@ -15,7 +15,7 @@ export class Menu {
   id!: number;
 
   @ManyToOne(() => Store, (store) => store.menus)
-  store: Store;
+  storeId: number;
 
   @ApiProperty({
     example: '돌쇠비빔밥',
