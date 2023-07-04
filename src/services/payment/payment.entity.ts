@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Store } from '../store/store.entity';
 import { Customer } from '../customer/customer.entity';
-import { Order } from '../order/order.entity';
+import { OrderEntity } from '../order/order.entity';
 
 @Entity()
 export class Payment {
@@ -49,9 +49,9 @@ export class Payment {
   })
   refundedAt: Date;
 
-  @OneToOne(() => Order)
+  @OneToOne(() => OrderEntity)
   @JoinColumn()
-  order: Order; // 주문 id
+  order: OrderEntity; // 주문 id
 
   @ManyToOne(() => Store)
   store: Store; // 매장 id
