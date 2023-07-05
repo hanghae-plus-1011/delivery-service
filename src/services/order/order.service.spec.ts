@@ -20,10 +20,12 @@ describe('OrderService', () => {
   beforeAll(async () => {
     const { unit, unitRef } = TestBed.create(OrderService)
       .mock(OrderRepository)
+
       .using({
         createOrder: jest.fn(),
         getOrderByCustomer: jest.fn(),
       })
+
       // .mock(Logger)
       // .using({ log: jest.fn() })
       // .mock(CatsDal)
@@ -123,9 +125,9 @@ describe('OrderService', () => {
         expect(() =>
           orderService.createOrder(mockCreateOrderRequestInfo),
         ).toThrow();
+
       });
     });
-  });
 
   describe('사용자의 주문 리스트 조회', () => {
     beforeAll(async () => {
