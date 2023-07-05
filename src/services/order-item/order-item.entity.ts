@@ -7,7 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Menu } from '../menu/menu.entity';
-import { Order } from '../order/order.entity';
+import { OrderEntity } from '../order/order.entity';
 
 @Entity()
 export class OrderItem {
@@ -24,6 +24,6 @@ export class OrderItem {
   @JoinColumn()
   menu: Menu; // 메뉴 id
 
-  @ManyToOne(() => Order)
-  order: Order; // 주문 id
+  @ManyToOne(() => OrderEntity)
+  order: OrderEntity; // 주문 id
 }

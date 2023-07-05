@@ -17,7 +17,7 @@ import { Review } from '../review/review.entity';
 // import { Notification } from '../notification/notification.entity';
 
 @Entity()
-export class Order {
+export class OrderEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'orderServiceId',
@@ -33,10 +33,10 @@ export class Order {
   })
   orderStatus: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date; // 주문 정보 생성 시간
 
-  @UpdateDateColumn() // 데코레이터 확인
+  @UpdateDateColumn({ name: 'updated_at' }) // 데코레이터 확인
   updateAt: Date; // 주문 정보 수정 시간
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.order)

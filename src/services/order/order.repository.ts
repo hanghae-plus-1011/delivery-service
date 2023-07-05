@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Order } from './order.entity';
+import { OrderEntity } from './order.entity';
+
 @Injectable()
 export class OrderRepository {
   constructor(
-    @InjectRepository(Order) private readonly orderEntity: Repository<Order>,
-  ) { }
-
+    @InjectRepository(OrderEntity)
+    private readonly orderEntity: Repository<OrderEntity>,
+  ) {}
+  
   createOrder = (orderData) => {
     return true;
+  };
+
+  getOrderByCustomer = (orderData) => {
+    return [];
   };
 }
