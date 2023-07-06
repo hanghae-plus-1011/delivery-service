@@ -19,6 +19,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@test/*": ["test/*"],
+      "@services/*": ["src/services/*"],
+      "@libs/*": ["src/libs/*"],
+      "@dist/*": ["dist/*"]
+    }
   }
 }

@@ -26,4 +26,18 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@src', './src'],
+          ['@test', './test'],
+          ['@services', './src/services'],
+          ['@libs', './src/libs'],
+          ['@dist', './dist'],
+        ],
+        extensions: ['.ts', '.js', '.json'],
+      },
+    },
+  },
 };
