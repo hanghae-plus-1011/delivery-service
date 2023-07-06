@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Store } from '../store/store.entity';
+import { Store } from '@services/store/store.entity';
 
 @Entity()
 export class Owner {

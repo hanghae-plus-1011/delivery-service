@@ -1,9 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Customer } from '../customer/customer.entity';
-import { Store } from '../store/store.entity';
-import { OrderEntity } from '../order/order.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Customer } from '@services/customer/customer.entity';
+import { OrderEntity } from '@services/order/order.entity';
+import { Store } from '@services/store/store.entity';
 
 @Entity()
 export class Review {
@@ -23,8 +29,7 @@ export class Review {
   store: Store;
 
   @OneToOne(() => OrderEntity)
-  order: OrderEntity
-
+  order: OrderEntity;
 
   @ApiProperty({
     example: '맛있습니다! 다음에 또 시켜먹을려구용. 별점 5개 드립니다.',

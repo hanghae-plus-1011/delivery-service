@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -7,11 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Review } from '@services/review/review.entity';
+import { Cart } from '@services/cart/cart.entity';
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
-import { Cart } from '../cart/cart.entity';
-import { Review } from '../review/review.entity';
-
 @Entity()
 export class Customer {
   @ApiProperty({

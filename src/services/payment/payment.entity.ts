@@ -6,9 +6,9 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Store } from '../store/store.entity';
-import { Customer } from '../customer/customer.entity';
-import { OrderEntity } from '../order/order.entity';
+import { Store } from '@services/store/store.entity';
+import { Customer } from '@services/customer/customer.entity';
+import { OrderEntity } from '@services/order/order.entity';
 
 @Entity()
 export class Payment {

@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Customer } from '@services/customer/customer.entity';
 import { IsNotEmpty, IsNumber } from 'class-validator';
-import { Customer } from '../customer/customer.entity';
 
 @Entity()
 export class Bookmark {

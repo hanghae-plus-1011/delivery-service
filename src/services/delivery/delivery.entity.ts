@@ -1,15 +1,15 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
-  CreateDateColumn,
-  JoinColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
-import { OrderEntity } from '../order/order.entity';
-import { Store } from '../store/store.entity';
-import { Customer } from '../customer/customer.entity';
+import { Customer } from '@services/customer/customer.entity';
+import { OrderEntity } from '@services/order/order.entity';
+import { Store } from '@services/store/store.entity';
 
 @Entity()
 export class Delivery {
