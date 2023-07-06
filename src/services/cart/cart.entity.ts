@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsInt, IsNotEmpty, IsNumber } from 'class-validator';
-import { Customer } from '../customer/customer.entity';
+import { Customer } from '@services/customer/customer.entity';
 
 @Entity()
 export class Cart {

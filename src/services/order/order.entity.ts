@@ -1,20 +1,19 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
-  CreateDateColumn,
-  JoinColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Customer } from '../customer/customer.entity';
-import { Store } from '../store/store.entity';
-import { OrderItem } from '../order-item/order-item.entity';
-import { Payment } from '../payment/payment.entity';
-import { Review } from '../review/review.entity';
-// import { Notification } from '../notification/notification.entity';
+// import { Notification } from '@services/notification/notification.entity';
+import { Customer } from '@services/customer/customer.entity';
+import { OrderItem } from '@services/order-item/order-item.entity';
+import { Store } from '@services/store/store.entity';
+import { Review } from '@services/review/review.entity';
 
 @Entity()
 export class OrderEntity {

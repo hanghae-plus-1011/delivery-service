@@ -6,8 +6,8 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Menu } from '../menu/menu.entity';
-import { OrderEntity } from '../order/order.entity';
+import { Menu } from '@services/menu/menu.entity';
+import { OrderEntity } from '@services/order/order.entity';
 
 @Entity()
 export class OrderItem {
