@@ -53,6 +53,9 @@ export class Store {
   @OneToMany(() => Menu, (menu) => menu.store)
   menus: Menu[];
 
+  @OneToMany(() => Menu, (menu) => menu.store)
+  reviews: Menu[];
+
   constructor(partial: Partial<Store>) {
     Object.assign(this, partial);
   }

@@ -61,6 +61,9 @@ export class Customer {
   @OneToMany(() => Cart, (cart) => cart.Customer)
   Carts: Cart[];
 
+  @OneToMany(() => Cart, (cart) => cart.Customer)
+  reviews: Cart[];
+
   constructor(partial: Partial<Customer>) {
     Object.assign(this, partial);
   }
