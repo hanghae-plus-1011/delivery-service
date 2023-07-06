@@ -10,6 +10,7 @@ import {
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Cart } from '../cart/cart.entity';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class Customer {
@@ -61,7 +62,7 @@ export class Customer {
   @OneToMany(() => Cart, (cart) => cart.Customer)
   Carts: Cart[];
 
-  @OneToMany(() => Cart, (cart) => cart.Customer)
+  @OneToMany(() => Review, (review) => review)
   reviews: Cart[];
 
   constructor(partial: Partial<Customer>) {

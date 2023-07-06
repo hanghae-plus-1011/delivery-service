@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { Menu } from '../menu/menu.entity';
 import { Owner } from '../owner/owner.entity';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class Store {
@@ -53,8 +54,8 @@ export class Store {
   @OneToMany(() => Menu, (menu) => menu.store)
   menus: Menu[];
 
-  @OneToMany(() => Menu, (menu) => menu.store)
-  reviews: Menu[];
+  @OneToMany(() => Review, (review) => review)
+  reviews: Review[];
 
   constructor(partial: Partial<Store>) {
     Object.assign(this, partial);
