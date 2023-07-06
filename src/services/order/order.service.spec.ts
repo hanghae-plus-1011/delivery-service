@@ -127,6 +127,7 @@ describe('OrderService', () => {
         ).toThrow();
       });
     });
+  });
 
     describe('사용자의 주문 리스트 조회', () => {
       beforeAll(async () => {
@@ -252,5 +253,6 @@ describe('OrderService', () => {
       //       //   .toThrow();
       //     });
     });
+
   });
-});
+})
