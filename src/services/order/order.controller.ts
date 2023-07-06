@@ -9,6 +9,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
+import { CreateOrderDto } from './dto/createOrder.dto';
+
 
 @Controller('api/orders')
 export class OrderController {
@@ -16,19 +18,19 @@ export class OrderController {
 
   @Get()
   getOrders(@Query() query) {
-    this.orderService.getOrders(query);
+    this.orderService.getOrderByCustomer(query);
     return;
   }
 
-  @Get(':orderId')
-  getOrder(@Param() param) {
-    this.orderService.getOrder(param);
-    return;
-  }
+  // @Get(':orderId')
+  // getOrder(@Param() param) {
+  //   this.orderService.getOrder(param);
+  //   return;
+  // }
 
   @Post()
-  createOrder(@Body() body) {
-    this.orderService.createOrder(body);
+  createOrder(@Body() createOrderDto: CreateOrderDto) {
+    this.orderService.createOrder(createOrderDto);
     return;
   }
 

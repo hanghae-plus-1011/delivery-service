@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MenuService {
-  addMenu() {}
+  addMenu(validMenu) {
 
-  removeMenu() {}
+  }
+
+  removeMenu(validMenu) { }
 }

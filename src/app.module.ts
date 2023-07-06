@@ -15,7 +15,7 @@ import { ReviewModule } from './services/review/review.module';
 import { OrderModule } from './services/order/order.module';
 import { DeliveryModule } from './services/delivery/delivery.module';
 import { PaymentModule } from './services/payment/payment.module';
-import { DatabaseModule } from './libs/database/database.module';
+// import { DatabaseModule } from './libs/database/database.module';
 import { OrderItemModule } from './services/order-item/order-item.module';
 
 @Module({
@@ -29,7 +29,7 @@ import { OrderItemModule } from './services/order-item/order-item.module';
       cache: true,
       expandVariables: true,
     }),
-    DatabaseModule,
+    // DatabaseModule,
     CustomerModule,
     OrderModule,
     DeliveryModule,
@@ -43,7 +43,10 @@ import { OrderItemModule } from './services/order-item/order-item.module';
     OwnerModule,
     OrderItemModule,
   ],
+
   controllers: [AppController],
   providers: [],
 })
+
+
 export class AppModule { }
