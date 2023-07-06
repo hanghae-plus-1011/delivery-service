@@ -8,14 +8,15 @@ async function bootstrap() {
 
   initSwagger(app);
 
-  await app.listen(3000);
+  await app.listen(8000);
+  console.log('delivery-service app running')
 }
 
 function initSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
     .setTitle('NestJS Delivery Service')
     .setDescription('Delivery Service API')
-    .setVersion(process.env.packageVersion)
+    .setVersion(process.env.PACKAGE_VERSION)
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

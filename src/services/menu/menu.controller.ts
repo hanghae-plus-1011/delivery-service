@@ -23,7 +23,7 @@ export class CreateMenuDto {
 @Controller('menu')
 export class MenuController {
   @Get(':id')
-  getMenuById(@Param('id') id: number): MenuType {
+  getMenuById(@Param('id') id: number): any { // TODO: MenuType > any 도커 빌드 오류 문제로 잠시 수정
     return menuDBFixture.find((menu) => menu.id === id);
   }
 
@@ -35,7 +35,8 @@ export class MenuController {
   }
 
   @Patch(':id')
-  updateMenu(@Param('id') id: number, @Body() menu: CreateMenuDto): MenuType {
+  updateMenu(@Param('id') id: number, @Body() menu: CreateMenuDto): any {
+    // TODO: MenuType > any 도커 빌드 오류 문제로 잠시 수정
     const menuIndex = menuDBFixture.findIndex((menuItem) => menuItem.id === id);
     menuDBFixture[menuIndex] = { ...menuDBFixture[menuIndex], ...menu };
     return menuDBFixture[menuIndex];
