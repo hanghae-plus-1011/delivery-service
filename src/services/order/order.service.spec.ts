@@ -125,13 +125,13 @@ describe('OrderService', () => {
         expect(() =>
           orderService.createOrder(mockCreateOrderRequestInfo),
         ).toThrow();
-
       });
     });
 
-  describe('사용자의 주문 리스트 조회', () => {
-    beforeAll(async () => {
-      jest.spyOn(orderService, 'getOrderByCustomer');
+    describe('사용자의 주문 리스트 조회', () => {
+      beforeAll(async () => {
+        jest.spyOn(orderService, 'getOrderByCustomer');
+      });
     });
 
     describe('Mocking 테스트', () => {

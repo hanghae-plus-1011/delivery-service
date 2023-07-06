@@ -10,8 +10,13 @@ import {
 import { Menu } from './menu.entity';
 import { menuDBFixture } from './menu.fixture';
 
-type MenuType = Menu;
+export class MenuDto {
+  storeId: number;
 
+  menuName: string;
+
+  price: number;
+}
 export class CreateMenuDto {
   storeId: number;
 
@@ -23,19 +28,18 @@ export class CreateMenuDto {
 @Controller('menu')
 export class MenuController {
   @Get(':id')
-  getMenuById(@Param('id') id: number): MenuType {
+  getMenuById(@Param('id') id: number): MenuDto {
     return menuDBFixture.find((menu) => menu.id === id);
   }
 
-  // Q. Store의 menus에도 추가되어야 하는데 어떻게 처리하지?
   @Post()
-  addMenu(@Body() menu: CreateMenuDto): MenuType {
-    const newMenu = new Menu(menu) as MenuType;
+  addMenu(@Body() menu: CreateMenuDto): MenuDto {
+    const newMenu = new Menu(menu) as MenuDto;
     return newMenu;
   }
 
   @Patch(':id')
-  updateMenu(@Param('id') id: number, @Body() menu: CreateMenuDto): MenuType {
+  updateMenu(@Param('id') id: number, @Body() menu: CreateMenuDto): MenuDto {
     const menuIndex = menuDBFixture.findIndex((menuItem) => menuItem.id === id);
     menuDBFixture[menuIndex] = { ...menuDBFixture[menuIndex], ...menu };
     return menuDBFixture[menuIndex];
