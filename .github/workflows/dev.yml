@@ -1,0 +1,17 @@
+name: Dev Branch Workflow
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Run script
+        run: echo "Pushed on dev branch"
