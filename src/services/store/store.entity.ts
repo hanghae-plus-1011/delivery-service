@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import {
   Column,
@@ -10,9 +9,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Menu } from '@services/menu/menu.entity';
-import { Owner } from '@services/owner/owner.entity';
-import { Review } from '@services/review/review.entity';
+import { Menu } from '../menu/menu.entity';
+import { Owner } from '../owner/owner.entity';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class Store {

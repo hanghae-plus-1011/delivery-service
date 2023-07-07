@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Store } from '@services/store/store.entity';
+import { Store } from '../store/store.entity';
 
 import { CreateMenuDto } from './menu.controller';
 
