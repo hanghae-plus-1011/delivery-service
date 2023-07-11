@@ -10,12 +10,12 @@ WORKDIR /app
 # -y 옵션을 넣어서 무조건 설치
 RUN apt-get update
 
-# 한글 지원을 위한 환경 변수 등록
-ENV LANG=ko_KR.UTF-8 \
-    LANGUAGE=ko_KR.UTF-8
+# # 한글 지원을 위한 환경 변수 등록
+# ENV LANG=ko_KR.UTF-8 \
+#     LANGUAGE=ko_KR.UTF-8
 
-# 한국 시간대 설정
-ENV TZ=Asia/Seoul
+# # 한국 시간대 설정
+# ENV TZ=Asia/Seoul
 
 # package 파일을 먼저 복사 후 package를 추가할 때만 npm ci를 실행
 COPY package*.json .
@@ -36,21 +36,21 @@ FROM node:18-alpine
 # 컨테이너 내부에 작업 디렉터리 생성
 WORKDIR /app
 
-# 한글 지원을 위한 환경 변수 등록
-ENV LANG=ko_KR.UTF-8 \
-    LANGUAGE=ko_KR.UTF-8
+# # 한글 지원을 위한 환경 변수 등록
+# ENV LANG=ko_KR.UTF-8 \
+#     LANGUAGE=ko_KR.UTF-8
 
-# 한국 시간대 설정
-ENV TZ=Asia/Seoul
+# # 한국 시간대 설정
+# ENV TZ=Asia/Seoul
 
-# 환경 변수 설정 : prod
-ENV NODE_ENV=prod
+# # 환경 변수 설정 : prod
+# ENV NODE_ENV=prod
 
 # 빌드된 이미지를 가져와 복사
 COPY --from=builder /app ./
 
-# 컨테이너가 실행되었을 때 스크립트 실행 
-ENTRYPOINT ["npm", "run", "start:prod"]
+# # 컨테이너가 실행되었을 때 스크립트 실행 
+# ENTRYPOINT ["npm", "run", "start:prod"]
 
 
 

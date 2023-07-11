@@ -29,6 +29,7 @@ export class CreateMenuDto {
 export class MenuController {
   @Get(':id')
   getMenuById(@Param('id') id: number): MenuDto {
+
     return menuDBFixture.find((menu) => menu.id === id);
   }
 
