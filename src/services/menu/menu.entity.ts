@@ -16,8 +16,17 @@ export class Menu {
   @IsNumber()
   id!: number;
 
-  @ManyToOne(() => Store)
-  store: Store;
+  @ManyToOne(() => Store, (store) => store.menus)
+  store: number;
+
+  @ApiProperty({
+    example: 1,
+    description: 'store id',
+  })
+  @Column({ type: 'int' })
+  @IsNotEmpty()
+  @IsNumber()
+  storeId: number;
 
   @ApiProperty({
     example: '돌쇠비빔밥',

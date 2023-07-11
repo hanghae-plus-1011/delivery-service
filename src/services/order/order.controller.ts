@@ -2,10 +2,10 @@ import {
   Controller,
   Post,
   Get,
-  Put,
+  // Put,
   Body,
-  Delete,
-  Param,
+  // Delete,
+  // Param,
   Query,
 } from '@nestjs/common';
 import { OrderService } from './order.service';

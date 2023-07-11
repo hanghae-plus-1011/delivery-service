@@ -125,7 +125,6 @@ describe('OrderService', () => {
         expect(() =>
           orderService.createOrder(mockCreateOrderRequestInfo),
         ).toThrow();
-
       });
     });
   });
