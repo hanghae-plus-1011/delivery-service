@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
+// import { WinstonModule } from 'nest-winston';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AppController } from './app.controller';
@@ -20,15 +21,20 @@ import { OrderItemModule } from './services/order-item/order-item.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: join(
-        process.cwd(),
-        `.env.${process.env.NODE_ENV ?? 'development'}`,
-      ),
-      cache: true,
-      expandVariables: true,
-    }),
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+        envFilePath: join(
+          process.cwd(),
+          `.env.${process.env.NODE_ENV ?? 'development'}`,
+        ),
+        cache: true,
+        expandVariables: true,
+      },
+      // WinstonModule.forRoot(
+      //   // 옵션 :  createLogger()
+      // ),
+    ),
     // DatabaseModule,
     CustomerModule,
     OrderModule,
@@ -47,6 +53,4 @@ import { OrderItemModule } from './services/order-item/order-item.module';
   controllers: [AppController],
   providers: [],
 })
-
-
 export class AppModule { }
