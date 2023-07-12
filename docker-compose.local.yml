@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PWD}
+      - TZ=Asia/Seoul
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ${DB_PATH}:/var/lib/mysql:rw
+    restart: always
+
+
+  delivery-service:
+    image: delivery-service
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - LANG=ko_KR.UTF-8
+      - LANGUAGE=ko_KR.UTF-8
+      - TZ=Asia/Seoul
+    ports:
+      - "8000:8000"
+    volumes:
+      - ${APP_PATH}:/app:rw
+    command:
+      - sh
+      - -c
+      - ${APP_EXCUTE_COMMAND}
