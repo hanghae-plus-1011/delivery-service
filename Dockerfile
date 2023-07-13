@@ -49,8 +49,8 @@ ENV NODE_ENV=development
 # 빌드된 이미지를 가져와 복사
 COPY --from=builder /app ./
 
-# # 컨테이너가 실행되었을 때 스크립트 실행 
-# ENTRYPOINT ["npm", "run", "start:prod"]
+# 컨테이너가 실행되었을 때 스크립트 실행 
+CMD ["npm", "run", "start:prod"]
 
 
 
