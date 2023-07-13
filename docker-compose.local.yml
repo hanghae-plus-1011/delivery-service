@@ -27,9 +27,10 @@ services:
       - TZ=Asia/Seoul
     ports:
       - "8000:8000"
+    # command:
+    #   - bash
+    #   - -c
+    #   - |
+    #     ${APP_EXCUTE_COMMAND}
     volumes:
       - ${APP_PATH}:/app:rw
-    command:
-      - sh
-      - -c
-      - ${APP_EXCUTE_COMMAND}
