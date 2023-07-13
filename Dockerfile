@@ -18,7 +18,7 @@ ENV LANG=ko_KR.UTF-8 \
 ENV TZ=Asia/Seoul
 
 # package 파일을 먼저 복사 후 package를 추가할 때만 npm ci를 실행
-COPY package*.json .
+COPY package*.json ./
 RUN npm ci
 
 # 소스코드 복사
