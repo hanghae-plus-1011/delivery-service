@@ -18,7 +18,7 @@ import { DeliveryModule } from './services/delivery/delivery.module';
 import { PaymentModule } from './services/payment/payment.module';
 // import { DatabaseModule } from './libs/database/database.module';
 import { OrderItemModule } from './services/order-item/order-item.module';
-
+import { HealthCheckController } from './services/healthCheck.controller';
 @Module({
   imports: [
     ConfigModule.forRoot(
@@ -50,7 +50,7 @@ import { OrderItemModule } from './services/order-item/order-item.module';
     OrderItemModule,
   ],
 
-  controllers: [AppController],
+  controllers: [AppController, HealthCheckController],
   providers: [],
 })
 export class AppModule { }
