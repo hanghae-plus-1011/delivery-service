@@ -87,17 +87,18 @@ export class LoggerService {
 
     if (process.env.NODE_ENV === 'local') {
       transportList = [transport, new transports.Console(consoleOptions)];
-    } else {
-      transportList.push(
-        new WinstonCloudWatch({
-          logGroupName: 'YOUR_LOG_GROUP_NAME',
-          logStreamName: 'YOUR_LOG_STREAM_NAME',
-          awsAccessKeyId: 'YOUR_ACCESS_KEY_ID',
-          awsSecretKey: 'YOUR_SECRET_ACCESS_KEY',
-          awsRegion: 'YOUR_AWS_REGION',
-        }),
-      );
     }
+    // else {
+    //   transportList.push(
+    //     new WinstonCloudWatch({
+    //       logGroupName: 'YOUR_LOG_GROUP_NAME',
+    //       logStreamName: 'YOUR_LOG_STREAM_NAME',
+    //       awsAccessKeyId: 'YOUR_ACCESS_KEY_ID',
+    //       awsSecretKey: 'YOUR_SECRET_ACCESS_KEY',
+    //       awsRegion: 'YOUR_AWS_REGION',
+    //     }),
+    //   );
+    // }
 
     this.logger = createLogger({
       format: logFormat,
