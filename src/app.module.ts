@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { WinstonModule } from 'nest-winston';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AppController } from './app.controller';
@@ -19,22 +18,19 @@ import { PaymentModule } from './services/payment/payment.module';
 // import { DatabaseModule } from './libs/database/database.module';
 import { OrderItemModule } from './services/order-item/order-item.module';
 import { HealthCheckController } from './services/healthCheck.controller';
+// import { LoggingModule } from './libs/logger/logging.module';
+
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
-        isGlobal: true,
-        envFilePath: join(
-          process.cwd(),
-          `.env.${process.env.NODE_ENV ?? 'development'}`,
-        ),
-        cache: true,
-        expandVariables: true,
-      },
-      // WinstonModule.forRoot(
-      //   // 옵션 :  createLogger()
-      // ),
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: join(
+        process.cwd(),
+        `.env.${process.env.NODE_ENV ?? 'development'}`,
+      ),
+      cache: true,
+      expandVariables: true,
+    }),
     // DatabaseModule,
     CustomerModule,
     OrderModule,
@@ -48,9 +44,10 @@ import { HealthCheckController } from './services/healthCheck.controller';
     NotificationModule,
     OwnerModule,
     OrderItemModule,
+    // LoggingModule,
   ],
 
   controllers: [AppController, HealthCheckController],
   providers: [],
 })
-export class AppModule { }
+export class AppModule { } //
