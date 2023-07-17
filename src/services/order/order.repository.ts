@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, } from 'typeorm';
+import { Repository } from 'typeorm';
 import { OrderEntity } from './order.entity';
 
 export class OrderRepository {
@@ -14,6 +14,8 @@ export class OrderRepository {
   //   }
 
   createOrder = (orderData) => {
+    console.log('테스트 2');
+
     return true;
   };
 

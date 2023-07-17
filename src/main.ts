@@ -9,7 +9,7 @@ async function bootstrap() {
   initSwagger(app);
 
   await app.listen(8000);
-  console.log('delivery-service app running')
+  console.log('delivery-service app running');
 }
 
 function initSwagger(app: INestApplication): void {
