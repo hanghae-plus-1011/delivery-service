@@ -7,17 +7,21 @@ import {
   // Delete,
   // Param,
   Query,
+  Inject,
 } from '@nestjs/common';
+
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/createOrder.dto';
-import { LoggerService } from '../../libs/logger/logger.service';
+import { AppLogger } from '../../shared/logger/logger.service';
 
 @Controller('api/orders')
 export class OrderController {
   constructor(
     private orderService: OrderService,
-    private loggerService: LoggerService,
-  ) { }
+    private readonly appLogger: AppLogger,
+  ) {
+    this.appLogger.setContext('OrderService');
+  }
 
   @Get()
   getOrders(@Query() query) {
@@ -33,9 +37,8 @@ export class OrderController {
 
   @Post()
   createOrder(@Body() createOrderDto: CreateOrderDto) {
-    console.log('테스트');
     this.orderService.createOrder(createOrderDto);
-    this.loggerService.log('Create order');
+    this.appLogger.log('Create Order!!'); //
     return;
   }
 

@@ -1,4 +1,4 @@
-type OrderItemsRequestInfo = {
+type OrderItem = {
   id: number;
   quantity: number;
   storeId: number;
@@ -6,6 +6,6 @@ type OrderItemsRequestInfo = {
 
 export class CreateOrderDto {
   id: string;
-  orderItems: OrderItemsRequestInfo[];
 
+  orderItems: OrderItem[];
 }

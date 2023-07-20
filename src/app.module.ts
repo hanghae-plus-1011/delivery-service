@@ -18,7 +18,8 @@ import { PaymentModule } from './services/payment/payment.module';
 // import { DatabaseModule } from './libs/database/database.module';
 import { OrderItemModule } from './services/order-item/order-item.module';
 import { HealthCheckController } from './services/healthCheck.controller';
-// import { LoggingModule } from './libs/logger/logging.module';
+import { SharedModule } from './shared/shared.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { HealthCheckController } from './services/healthCheck.controller';
       cache: true,
       expandVariables: true,
     }),
+    SharedModule,
     // DatabaseModule,
     CustomerModule,
     OrderModule,
@@ -44,10 +46,10 @@ import { HealthCheckController } from './services/healthCheck.controller';
     NotificationModule,
     OwnerModule,
     OrderItemModule,
-    // LoggingModule,
   ],
 
   controllers: [AppController, HealthCheckController],
-  providers: [],
+  providers: [AppService],
+  exports: [SharedModule],
 })
 export class AppModule { } //
