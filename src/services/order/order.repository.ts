@@ -14,8 +14,6 @@ export class OrderRepository {
   //   }
 
   createOrder = (orderData) => {
-    console.log('테스트 2');
-
     return true;
   };
 
