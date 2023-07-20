@@ -92,7 +92,7 @@ export class AppLogger implements LoggerService {
       // 프로덕션 또는 dev일 경우
       const cloudWatchLogOptions = {
         logGroupName: process.env.AWS_LOG_GROUP_NAME,
-        logStreamName: `${process.env.CLOUDWATCH_GROUP_NAME}-stream`,
+        // logStreamName: `${process.env.CLOUDWATCH_GROUP_NAME}-stream`,
         awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
         awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
         awsRegion: process.env.AWS_REGION,
