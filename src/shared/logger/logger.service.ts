@@ -70,13 +70,13 @@ export class AppLogger implements LoggerService {
         level: 'info',
         format: combine(
           colorize(),
-          label({ label: '[delivery-service]' }),
+          label({ label: 'delivery-service' }),
           timestamp({
             format: 'YYYY-MM-DD HH:mm:ss',
           }),
           printf(
             (info) =>
-              `${info.timestamp} - ${info.level}: ${info.label} ${info.message}`,
+              `${info.timestamp} - ${info.level}: [${info.label} ${info.context}] ${info.message}`,
           ),
         ),
       };
@@ -92,14 +92,14 @@ export class AppLogger implements LoggerService {
       // 프로덕션 또는 dev일 경우
       const cloudWatchLogOptions = {
         logGroupName: process.env.AWS_LOG_GROUP_NAME,
-        logStreamName: `${process.env.CLOUDWATCH_GROUP_NAME}-stream`,
+        logStreamName: `${process.env.AWS_LOG_GROUP_NAME}-application-stream`,
         awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
         awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
         awsRegion: process.env.AWS_REGION,
         messageFormatter: ({ level, message, additionalInfo }) =>
-          `[${level}] : ${message} \nAdditional Info: ${JSON.stringify(
+          `[${level}] path: ${JSON.stringify(
             additionalInfo,
-          )}}`,
+          )} message: ${message} \n }`,
         awsOptions: {
           credentials: {
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
