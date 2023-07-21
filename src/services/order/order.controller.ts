@@ -7,8 +7,9 @@ import {
   // Delete,
   // Param,
   Query,
-  Inject,
+  Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/createOrder.dto';
@@ -20,7 +21,7 @@ export class OrderController {
     private orderService: OrderService,
     private readonly appLogger: AppLogger,
   ) {
-    this.appLogger.setContext('OrderService');
+    this.appLogger.setContext('Order');
   }
 
   @Get()
@@ -36,9 +37,9 @@ export class OrderController {
   // }
 
   @Post()
-  createOrder(@Body() createOrderDto: CreateOrderDto) {
+  createOrder(@Req() req: Request, @Body() createOrderDto: CreateOrderDto) {
     this.orderService.createOrder(createOrderDto);
-    this.appLogger.log('Create Order!!'); //
+    this.appLogger.log('Success', `${req.method}-${req.originalUrl}`); //
     return;
   }
 
