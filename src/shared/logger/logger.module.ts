@@ -8,7 +8,6 @@ import { AppLogger } from './logger.service';
 export class LoggerModule { }
 
 //================================================
-=======
 // import { Module } from '@nestjs/common';
 // import { WinstonModule } from 'nest-winston';
 // // import * as winston from 'winston';
@@ -138,7 +137,6 @@ export class LoggerModule { }
 //     this.logger.log('debug', message, { context });
 //   }
 // }
-
 
 // ------------------dynamic module--------------------------------------------
 
