@@ -6,6 +6,8 @@ import { AppLogger } from './logger.service';
   exports: [AppLogger],
 })
 export class LoggerModule { }
+
+//================================================
 // import { Module } from '@nestjs/common';
 // import { WinstonModule } from 'nest-winston';
 // // import * as winston from 'winston';
@@ -136,7 +138,7 @@ export class LoggerModule { }
 //   }
 // }
 
-// ------------------dynamic module--------------------------------------------
+// // ------------------dynamic module--------------------------------------------
 // import { Module, DynamicModule } from '@nestjs/common';
 // import { LoggerService } from './logger.service';
 // import {
@@ -221,7 +223,6 @@ export class LoggerModule { }
 //     };
 
 //     return {
-//       global: true,
 //       module: LoggerModule,
 //       providers: [
 //         LoggerService,

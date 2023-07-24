@@ -39,7 +39,7 @@ export class OrderController {
   @Post()
   createOrder(@Req() req: Request, @Body() createOrderDto: CreateOrderDto) {
     this.orderService.createOrder(createOrderDto);
-    this.appLogger.log('Success', `${req.method}-${req.originalUrl}`); //
+    this.appLogger.log(`${req.method}-${req.originalUrl} : Success`); //
     return;
   }
 

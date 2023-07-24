@@ -97,9 +97,7 @@ export class AppLogger implements LoggerService {
         awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
         awsRegion: process.env.AWS_REGION,
         messageFormatter: ({ level, message, additionalInfo }) =>
-          `[${level}] path: ${JSON.stringify(
-            additionalInfo,
-          )} message: ${message} \n }`,
+          `[${level}] message: ${message} \nadditionalInfo: ${additionalInfo} }`,
         awsOptions: {
           credentials: {
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
