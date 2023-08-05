@@ -10,7 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "tsc-watch --onSuccess \"node dist/src/main.js\"",
     "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "start:debug": "tsc-watch --onSuccess \"node dist/src/main.js\"",
     "start:prod": "tsc-watch --onSuccess \"node dist/src/main.js\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",

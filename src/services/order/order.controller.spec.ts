@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
-import { OrderRepository } from './order.repository';
+import { AppLogger } from '../../shared/logger/logger.service';
+// import { OrderRepository } from './order.repository';
 
 describe('OrderController', () => {
   let controller: OrderController;
@@ -9,7 +10,11 @@ describe('OrderController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [OrderController],
-      providers: [OrderService, OrderRepository],
+      providers: [
+        OrderService,
+        AppLogger,
+        //   // , OrderRepository
+      ],
     }).compile();
 
     controller = module.get<OrderController>(OrderController);

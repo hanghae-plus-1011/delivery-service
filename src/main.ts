@@ -12,7 +12,9 @@ async function bootstrap() {
   app.useLogger(new AppLogger());
   initSwagger(app);
   await app.listen(8000);
-  console.log('delivery-service app running');
+  console.log(
+    `delivery-service app running ${process.env.SERVER_PORT}: ${process.env.NODE_ENV}`,
+  );
 }
 
 function initSwagger(app: INestApplication): void {

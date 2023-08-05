@@ -55,7 +55,7 @@ export class AppLogger implements LoggerService {
       json(),
     );
 
-    console.log('환경변수 : ', process.env.NODE_ENV);
+    // console.log('환경변수 : ', process.env.NODE_ENV);
     // 로컬일 경우
     if (process.env.NODE_ENV === 'local') {
       const dailyLogFileOptions = {

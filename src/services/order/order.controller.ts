@@ -8,6 +8,7 @@ import {
   // Param,
   Query,
   Req,
+  HttpCode,
 } from '@nestjs/common';
 import { Request } from 'express';
 
@@ -25,6 +26,7 @@ export class OrderController {
   }
 
   @Get()
+  @HttpCode(200)
   getOrders(@Query() query) {
     this.orderService.getOrderByCustomer(query);
     return;
@@ -37,6 +39,7 @@ export class OrderController {
   // }
 
   @Post()
+  @HttpCode(201)
   createOrder(@Req() req: Request, @Body() createOrderDto: CreateOrderDto) {
     this.orderService.createOrder(createOrderDto);
     this.appLogger.log(`${req.method}-${req.originalUrl} : Success`); //

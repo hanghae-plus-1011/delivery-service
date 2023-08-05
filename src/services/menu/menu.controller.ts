@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -10,45 +12,44 @@ import {
 import { Menu } from './menu.entity';
 import { menuDBFixture } from './menu.fixture';
 
-export class MenuDto {
-  storeId: number;
+// export class MenuDto {
+//   storeId: number;
 
-  menuName: string;
+//   menuName: string;
 
-  price: number;
-}
-export class CreateMenuDto {
-  storeId: number;
+//   price: number;
+// }
+// export class CreateMenuDto {
+//   storeId: number;
 
-  menuName: string;
+//   menuName: string;
 
-  price: number;
-}
+//   price: number;
+// }
 
 @Controller('menu')
 export class MenuController {
   @Get(':id')
-  getMenuById(@Param('id') id: number): MenuDto {
-
-    return menuDBFixture.find((menu) => menu.id === id);
+  @HttpCode(200)
+  getMenuById() {
+    return 'OK';
   }
 
   @Post()
-  addMenu(@Body() menu: CreateMenuDto): MenuDto {
-    const newMenu = new Menu(menu) as MenuDto;
-    return newMenu;
+  @HttpCode(201)
+  addMenu() {
+    return 'Created';
   }
 
   @Patch(':id')
-  updateMenu(@Param('id') id: number, @Body() menu: CreateMenuDto): MenuDto {
-    const menuIndex = menuDBFixture.findIndex((menuItem) => menuItem.id === id);
-    menuDBFixture[menuIndex] = { ...menuDBFixture[menuIndex], ...menu };
-    return menuDBFixture[menuIndex];
+  @HttpCode(204)
+  updateMenu() {
+    return 'Updated';
   }
 
   @Delete(':id')
-  deleteMenu(@Param('id') id: number): void {
-    const menuIndex = menuDBFixture.findIndex((menu) => menu.id === id);
-    menuDBFixture.splice(menuIndex, 1);
+  @HttpCode(204)
+  deleteMenu() {
+    return 'Deleted';
   }
 }
